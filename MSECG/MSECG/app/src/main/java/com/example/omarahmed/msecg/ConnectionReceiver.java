@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 public class ConnectionReceiver extends BroadcastReceiver {
 
@@ -19,7 +20,7 @@ public class ConnectionReceiver extends BroadcastReceiver {
         if (BluetoothDevice.ACTION_FOUND.equals(action)) {
             //Device found
 
-            if(!Bluetooth_Activity.dataOfList.contains(device))
+            if(!Bluetooth_Activity.listViewContents1.contains(device))
             {
                 String deviceName = device.getName();
                 Bluetooth_Activity.dataOfList.add(deviceName);
@@ -30,15 +31,27 @@ public class ConnectionReceiver extends BroadcastReceiver {
         }
         else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
             //Device is now connected
+            Toast.makeText(context, "ACTION_ACL_CONNECTED", Toast.LENGTH_SHORT).show();
         }
         else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
             //Done searching
+            Toast.makeText(context, "ACTION_DISCOVERY_FINISHED", Toast.LENGTH_SHORT).show();
+
+        }
+        else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
+            //Done searching
+            Toast.makeText(context, "ACTION_DISCOVERY_STARTED", Toast.LENGTH_SHORT).show();
+
         }
         else if (BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED.equals(action)) {
             //Device is about to disconnect
+            Toast.makeText(context, "ACTION_ACL_DISCONNECT_REQUESTED", Toast.LENGTH_SHORT).show();
+
         }
         else if (BluetoothDevice.ACTION_ACL_DISCONNECTED.equals(action)) {
             //Device has disconnected
+            Toast.makeText(context, "ACTION_ACL_DISCONNECTED", Toast.LENGTH_SHORT).show();
+
         }
         else if(action.equals(BluetoothAdapter.ACTION_STATE_CHANGED))
         {
@@ -46,12 +59,20 @@ public class ConnectionReceiver extends BroadcastReceiver {
                     BluetoothAdapter.ERROR);
             switch (state) {
                 case BluetoothAdapter.STATE_OFF:
+                    Toast.makeText(context, "STATE_OFF", Toast.LENGTH_SHORT).show();
+
                     break;
                 case BluetoothAdapter.STATE_TURNING_OFF:
+                    Toast.makeText(context, "STATE_TURNING_OFF", Toast.LENGTH_SHORT).show();
+
                     break;
                 case BluetoothAdapter.STATE_ON:
+                    Toast.makeText(context, "STATE_ON", Toast.LENGTH_SHORT).show();
+
                     break;
                 case BluetoothAdapter.STATE_TURNING_ON:
+                    Toast.makeText(context, "STATE_TURNING_ON", Toast.LENGTH_SHORT).show();
+
                     break;
             }
 

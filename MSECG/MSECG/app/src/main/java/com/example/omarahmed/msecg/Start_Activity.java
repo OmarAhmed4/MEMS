@@ -3,6 +3,7 @@
     import android.content.Context;
     import android.content.Intent;
     import android.content.IntentFilter;
+    import android.net.Uri;
     import android.os.Bundle;
     import android.support.design.widget.NavigationView;
     import android.support.v4.view.GravityCompat;
@@ -167,12 +168,18 @@
 
         } else if (id == R.id.nav_manage) {
 
+            Intent intent =new Intent(Start_Activity.this,LineChartTest.class);
+            startActivity(intent);
+
+
         } else if (id == R.id.nav_share) {
             Intent intent =new Intent(Start_Activity.this,Bluetooth_Activity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_send) {
-
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:010456789"));
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

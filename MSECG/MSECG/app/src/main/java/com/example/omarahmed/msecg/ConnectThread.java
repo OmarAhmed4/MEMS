@@ -3,7 +3,9 @@ package com.example.omarahmed.msecg;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -20,10 +22,11 @@ public class ConnectThread extends Thread {
     private  final BluetoothDevice mBluetoothDevice;
     private final UUID BOARDUUID= UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     private BluetoothAdapter mBluetoothAdapter =BluetoothAdapter.getDefaultAdapter();
+    private Context context;
 
-
-    public ConnectThread(BluetoothDevice device)
+    public ConnectThread(BluetoothDevice device, Context context)
     {
+        this.context=context;
         this.mBluetoothDevice = device;
         BluetoothSocket tem=null;
         try {
@@ -37,18 +40,20 @@ public class ConnectThread extends Thread {
 
     public void run()
     {
-        mBluetoothAdapter.cancelDiscovery();
 
         try {
             // Connect to the remote device through the socket. This call blocks
             // until it succeeds or throws an exception.
             mBluetoothSocket.connect();
+           // Toast.makeText(context.this, "Could  connect the client socket", Toast.LENGTH_SHORT).show();
         } catch (IOException connectException) {
             // Unable to connect; close the socket and return.
+           // Toast.makeText(context, "  N o connect the client socket", Toast.LENGTH_SHORT).show();
             try {
                 mBluetoothSocket.close();
             } catch (IOException closeException) {
                 Log.e(TAG, "Could not close the client socket", closeException);
+               // Toast.makeText(context, "Could not close the client socket", Toast.LENGTH_SHORT).show();
             }
             return;
         }
@@ -61,6 +66,7 @@ public class ConnectThread extends Thread {
     private void manageMyConnectedSocket(BluetoothSocket mBluetoothSocket) {
 
         ConnectedThread connected=new ConnectedThread(mBluetoothSocket);
+        connected.start();
 
 
     }
@@ -70,6 +76,8 @@ public class ConnectThread extends Thread {
             mBluetoothSocket.close();
         } catch (IOException e) {
             Log.e(TAG, "Could not close the client socket", e);
+            Toast.makeText(context, "Could not close the client socket", Toast.LENGTH_SHORT).show();
+
         }
     }
 

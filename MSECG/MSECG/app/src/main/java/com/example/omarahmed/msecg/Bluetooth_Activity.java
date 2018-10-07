@@ -45,6 +45,8 @@ public class Bluetooth_Activity extends AppCompatActivity {
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
         registerReceiver(receiver,filter);
 
 
@@ -57,7 +59,8 @@ public class Bluetooth_Activity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ConnectThread connect=new ConnectThread(listViewContents1.get(position));
+                Thread connect=new ConnectThread(listViewContents1.get(position),Bluetooth_Activity.this);
+                connect.start();
 
                 // we try to connect right now continue the UI u want
 
@@ -70,6 +73,7 @@ public class Bluetooth_Activity extends AppCompatActivity {
         if(mBluetoothAdapter==null);
         else{ if(mBluetoothAdapter.isEnabled())
          {   bluetooth_button.setText("Search");
+             bluetooth_text.setText("Start Serarching");
               search_button(bluetooth_button);
          }
              if(!mBluetoothAdapter.isEnabled())
@@ -113,7 +117,7 @@ public class Bluetooth_Activity extends AppCompatActivity {
                     {
                         listViewContents1.add(d);
                         String deviceName=d.getName();
-                        dataOfList.add(deviceName);
+                        dataOfList.add(deviceName+"  is Paired Device");
                         items.notifyDataSetChanged();
 
                     }
@@ -176,6 +180,7 @@ public class Bluetooth_Activity extends AppCompatActivity {
             if (mBluetoothAdapter.isEnabled())
             {
                 mBluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
+                mBluetoothAdapter.startDiscovery();
                 dataOfList.clear();
 
                 Set<BluetoothDevice> mPairedbluetoothDvices= mBluetoothAdapter.getBondedDevices();
@@ -185,7 +190,7 @@ public class Bluetooth_Activity extends AppCompatActivity {
                     {
                         listViewContents1.add(d);
                         String deviceName=d.getName();
-                        dataOfList.add(deviceName);
+                        dataOfList.add(deviceName+"  is Paired Device");
                         items.notifyDataSetChanged();
 
 
@@ -220,11 +225,22 @@ public class Bluetooth_Activity extends AppCompatActivity {
 
             IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(receiver, filter);
-        }}
+        }
+    }
+
+
+
+    public void bluetooth_states(String status)
+    {
+
+
+
+    }
 
 
 
 
 
 
-}
+
+}   // end of class
