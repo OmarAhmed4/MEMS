@@ -108,6 +108,16 @@ public class LineChartTest extends AppCompatActivity implements OnChartGestureLi
         xVals.add("30");
         xVals.add("30.5");
         xVals.add("40");
+        xVals.add("40");
+        xVals.add("40");
+        xVals.add("40");
+        xVals.add("50");
+        xVals.add("90");
+        xVals.add("10");
+        xVals.add("120");
+        xVals.add("25");
+        xVals.add("60");
+        xVals.add("40");
 
         return xVals;
     }
@@ -119,6 +129,16 @@ public class LineChartTest extends AppCompatActivity implements OnChartGestureLi
         yVals.add(new Entry(70.5f, 2));
         yVals.add(new Entry(100, 3));
         yVals.add(new Entry(180.9f, 4));
+        yVals.add(new Entry(40, 5));
+        yVals.add(new Entry(80, 6));
+        yVals.add(new Entry(40, 7));
+        yVals.add(new Entry(180, 8));
+        yVals.add(new Entry(180.9f, 9));
+        yVals.add(new Entry(60, 10));
+        yVals.add(new Entry(48, 11));
+        yVals.add(new Entry(70.5f, 12));
+        yVals.add(new Entry(100, 13));
+        yVals.add(new Entry(180.9f, 14));
 
         return yVals;
     }
