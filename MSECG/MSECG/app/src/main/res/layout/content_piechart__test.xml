@@ -37,6 +37,7 @@
     <com.github.mikephil.charting.charts.LineChart
         android:layout_width="309dp"
         android:layout_height="270dp"
+        android:id="@+id/lead_line_chart"
         app:layout_constraintHeight_default="spread"
         app:layout_constraintWidth_default="spread"
         android:layout_marginTop="8dp"
