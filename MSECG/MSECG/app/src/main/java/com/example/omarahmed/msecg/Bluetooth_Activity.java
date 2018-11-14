@@ -20,6 +20,9 @@ import java.util.Set;
 
 public class Bluetooth_Activity extends AppCompatActivity {
 
+    //TODO:  Stay Alert to the Value Being Used to Send it to the simulator
+    //TODO:  Connect to Arduino code to try it virtually
+
     private static final int BLUETOOTH_REQUEST =100 ;
     public static ArrayList<String> dataOfList=new ArrayList<>();
     public static ArrayAdapter<String> items;
@@ -47,6 +50,7 @@ public class Bluetooth_Activity extends AppCompatActivity {
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(String.valueOf(BluetoothDevice.ERROR));
         registerReceiver(receiver,filter);
 
 
@@ -59,9 +63,15 @@ public class Bluetooth_Activity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Thread connect=new ConnectThread(listViewContents1.get(position),Bluetooth_Activity.this);
-                connect.start();
+                if(listViewContents1.get(position)!=null) {
+                    Thread connect = new ConnectThread(listViewContents1.get(position), Bluetooth_Activity.this);
+                    connect.start();
+                }
+                else
+                {
+                    Toast.makeText(Bluetooth_Activity.this, "Not available device ", Toast.LENGTH_SHORT).show();
 
+                }
                 // we try to connect right now continue the UI u want
 
 
@@ -97,6 +107,8 @@ public class Bluetooth_Activity extends AppCompatActivity {
         super.onDestroy();
 
         unregisterReceiver(receiver);
+        if(mBluetoothAdapter!=null)mBluetoothAdapter.disable();
+
     }
 
     @Override

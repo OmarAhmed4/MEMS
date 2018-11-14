@@ -43,9 +43,17 @@
         <receiver
             android:name=".NetworkConnectionReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
-        <activity android:name=".LineChartTest"></activity>
+        <activity
+            android:name=".LineChartTest"
+            android:parentActivityName=".Start_Activity" />
+        <activity
+            android:name=".Piechart_Test"
+            android:label="@string/title_activity_piechart__test"
+            android:parentActivityName=".Start_Activity"
+
+            ></activity>
     </application>
 
 </manifest>

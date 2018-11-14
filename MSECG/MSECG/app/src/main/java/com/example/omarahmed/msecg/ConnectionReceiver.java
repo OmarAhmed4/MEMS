@@ -5,12 +5,13 @@ import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 public class ConnectionReceiver extends BroadcastReceiver {
 
     @Override
-    public void onReceive(Context context, Intent intent) {
+    public void onReceive(Context context, Intent intent){
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
 
@@ -19,14 +20,20 @@ public class ConnectionReceiver extends BroadcastReceiver {
 
         if (BluetoothDevice.ACTION_FOUND.equals(action)) {
             //Device found
-
-            if(!Bluetooth_Activity.listViewContents1.contains(device))
-            {
-                String deviceName = device.getName();
-                Bluetooth_Activity.dataOfList.add(deviceName);
-                Bluetooth_Activity.items.notifyDataSetChanged();
-
+        try {
+            if (!Bluetooth_Activity.listViewContents1.contains(device)) {
+                if (device != null) {
+                    String deviceName = device.getName();
+                    Bluetooth_Activity.dataOfList.add(deviceName);
+                    Bluetooth_Activity.listViewContents1.add(device);
+                    Bluetooth_Activity.items.notifyDataSetChanged();
+                }
             }
+        }catch (Exception e)
+                {
+                    Log.e("Firebase","Error Of That device");
+
+                }
 
         }
         else if (BluetoothDevice.ACTION_ACL_CONNECTED.equals(action)) {
@@ -64,6 +71,9 @@ public class ConnectionReceiver extends BroadcastReceiver {
                     break;
                 case BluetoothAdapter.STATE_TURNING_OFF:
                     Toast.makeText(context, "STATE_TURNING_OFF", Toast.LENGTH_SHORT).show();
+                    Bluetooth_Activity.listViewContents1.clear();
+                    Bluetooth_Activity.dataOfList.clear();
+                    Bluetooth_Activity.items.notifyDataSetChanged();
 
                     break;
                 case BluetoothAdapter.STATE_ON:

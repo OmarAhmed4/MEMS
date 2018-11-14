@@ -3,22 +3,16 @@
 
     <group android:checkableBehavior="single">
         <item android:title="Store">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Companies banner" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+        <menu>
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Line Chart" />
+            <item
+                android:id="@+id/pieChartmenu"
+                android:icon="@drawable/ic_menu_send"
+                android:title="PieChart" />
+        </menu>
         </item>
     </group>
 

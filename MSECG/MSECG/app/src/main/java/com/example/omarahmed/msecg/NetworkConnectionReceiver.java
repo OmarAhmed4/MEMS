@@ -16,11 +16,11 @@ public class NetworkConnectionReceiver extends BroadcastReceiver {
         if ("android.net.conn.CONNECTIVITY_CHANGE".equals(intent.getAction())) {
             if (status == NetworkUtil.NETWORK_STATUS_NOT_CONNECTED) {
 
-                Toast.makeText(context, "No Connection", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "No Internet Connection", Toast.LENGTH_LONG).show();
                 Log.e("firebase","No Connection");
 
             } else {
-                Toast.makeText(context, "Connected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Now Connected To Internet", Toast.LENGTH_SHORT).show();
             }
         }
 

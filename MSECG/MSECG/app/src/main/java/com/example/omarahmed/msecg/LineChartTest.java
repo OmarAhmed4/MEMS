@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
@@ -42,6 +43,10 @@ public class LineChartTest extends AppCompatActivity implements OnChartGestureLi
         mChart.setOnChartValueSelectedListener(this);
         mChart.setDrawGridBackground(false);
 
+       // hide grid
+       /* mChart.getAxisLeft().setDrawGridLines(false);
+        mChart.getXAxis().setDrawGridLines(false);
+*/
         // add data
         setData();
 
@@ -53,7 +58,7 @@ public class LineChartTest extends AppCompatActivity implements OnChartGestureLi
         l.setForm(Legend.LegendForm.LINE);
 
         // no description text
-        mChart.setDescription("Demo Line Chart");
+        mChart.setDescription("Lead Chart");
         mChart.setNoDataTextDescription("You need to provide data for the chart.");
 
         // enable touch gestures
@@ -94,7 +99,23 @@ public class LineChartTest extends AppCompatActivity implements OnChartGestureLi
         //mChart.getViewPortHandler().setMaximumScaleY(2f);
         //mChart.getViewPortHandler().setMaximumScaleX(2f);
 
-        mChart.animateX(2500, Easing.EasingOption.EaseInOutQuart);
+        mChart.animateX(5000, Easing.EasingOption.EaseInOutQuart);
+        mChart.setLayoutAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         //  dont forget to refresh the drawing
         mChart.invalidate();
@@ -108,6 +129,7 @@ public class LineChartTest extends AppCompatActivity implements OnChartGestureLi
         xVals.add("30");
         xVals.add("30.5");
         xVals.add("40");
+
 
         return xVals;
     }
@@ -145,6 +167,7 @@ public class LineChartTest extends AppCompatActivity implements OnChartGestureLi
         set1.setDrawCircleHole(false);
         set1.setValueTextSize(9f);
         set1.setDrawFilled(true);
+
 
         ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
         dataSets.add(set1); // add the datasets
