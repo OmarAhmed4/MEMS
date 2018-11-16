@@ -60,12 +60,11 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
         yvalues.add(new Entry(8.3f, 5));
         yvalues.add(new Entry(8.3f, 6));
         yvalues.add(new Entry(8.3f, 7));
-        yvalues.add(new Entry(8.3f, 8));
         yvalues.add(new Entry(8.3f, 9));
         yvalues.add(new Entry(8.3f, 10));
         yvalues.add(new Entry(8.3f, 11));
-
-        PieDataSet dataSet = new PieDataSet(yvalues, "Selected Lead");
+        yvalues.add(new Entry(8.3f, 12));
+        PieDataSet dataSet = new PieDataSet(yvalues, "Elected Lead");
 
         ArrayList<String> xVals = new ArrayList<String>();
 

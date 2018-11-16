@@ -60,6 +60,7 @@ public class ConnectThread extends Thread {
 
         // The connection attempt succeeded. Perform work associated with
         // the connection in a separate thread.
+        After_Connection_to_Bluetooth.bluetoothSocket=mBluetoothSocket;
         manageMyConnectedSocket(mBluetoothSocket);
     }
 

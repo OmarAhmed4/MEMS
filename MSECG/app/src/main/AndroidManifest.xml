@@ -43,11 +43,19 @@
         <receiver
             android:name=".NetworkConnectionReceiver"
             android:enabled="true"
-            android:exported="true"></receiver>
+            android:exported="true" />
 
-        <activity android:name=".LineChartTest"
-            android:parentActivityName=".Start_Activity"
-            ></activity>
+        <activity
+            android:name=".LineChartTest"
+            android:parentActivityName=".Start_Activity" />
+        <activity
+            android:name=".Piechart_Test"
+            android:label="@string/title_activity_piechart__test"
+            android:parentActivityName=".Start_Activity" />
+        <activity
+            android:name=".After_Connection_to_Bluetooth"
+            android:label="@string/title_activity_after__connection_to__bluetooth"
+            android:parentActivityName=".Bluetooth_Activity"></activity>
     </application>
 
 </manifest>

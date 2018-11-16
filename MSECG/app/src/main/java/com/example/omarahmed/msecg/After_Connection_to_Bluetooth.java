@@ -1,5 +1,9 @@
 package com.example.omarahmed.msecg;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,30 +30,46 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Piechart_Test extends AppCompatActivity implements OnChartValueSelectedListener,OnChartGestureListener
-         {
-
-    // TODO: Connect The Piechart to Line Chart to detuce the selected lead
-    // TODO: COnnect the State OF Each Cycle
-    // TODO: THe PieChart
-
-
+public class After_Connection_to_Bluetooth extends AppCompatActivity  implements OnChartValueSelectedListener,OnChartGestureListener {
+    ConnectionReceiver receiver=new ConnectionReceiver();
     private String[] leads_name= new String[]{"Lead I","Lead II","Lead III","AVR","AVF","AVL","V1","V2","V3","V4","V5","V6"};
     private LineChart mChart;
+    public static BluetoothSocket  bluetoothSocket;
+    private ConnectedThread connectedThread;
+    private OutputStream outputStream;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_piechart__test);
+        setContentView(R.layout.activity_after__connection_to__bluetooth);
        /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
+        /*Intent intent=getIntent();
+        int position=intent.getIntExtra("Device",-1);
+        Thread connect = new ConnectThread(listViewContents1.get(position),this);
+        connect.start();*/
+
+        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
+        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(String.valueOf(BluetoothDevice.ERROR));
+        registerReceiver(receiver,filter);
 
 
+
+
+
+
+        // pie chart
         PieChart pieChart= (PieChart) findViewById(R.id.piechart);
         ArrayList<Entry> yvalues = new ArrayList<Entry>();
         yvalues.add(new Entry(8.3f, 0));
@@ -60,18 +80,17 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
         yvalues.add(new Entry(8.3f, 5));
         yvalues.add(new Entry(8.3f, 6));
         yvalues.add(new Entry(8.3f, 7));
-        yvalues.add(new Entry(8.3f, 8));
         yvalues.add(new Entry(8.3f, 9));
         yvalues.add(new Entry(8.3f, 10));
         yvalues.add(new Entry(8.3f, 11));
-
-        PieDataSet dataSet = new PieDataSet(yvalues, "Selected Lead");
+        yvalues.add(new Entry(8.3f, 12));
+        PieDataSet dataSet = new PieDataSet(yvalues, "Elected Lead");
 
         ArrayList<String> xVals = new ArrayList<String>();
 
         for(int i =0;i<12;i++)
         {
-        xVals.add(String.valueOf(leads_name[i]));
+            xVals.add(String.valueOf(leads_name[i]));
         }
 
 
@@ -87,7 +106,7 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
         pieChart.setHoleRadius(30f);
         pieChart.setOnChartValueSelectedListener(this);
 
-        // TODO :   Line Chart
+// TODO :   Line Chart
 
         mChart = (LineChart) findViewById(R.id.lead_line_chart);
         mChart.setOnChartGestureListener(this);
@@ -111,7 +130,7 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
         });
         mChart.setDrawGridBackground(false);
 
-       // setData();
+        // setData();
         Legend l = mChart.getLegend();
 
         // modify the legend ...
@@ -185,8 +204,8 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
 
 
 
-
     }
+
 
     private ArrayList<String> setXAxisValues(){
         ArrayList<String> xVals = new ArrayList<String>();
@@ -323,6 +342,27 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
 
         Toast t=Toast.makeText(getApplicationContext(),"Selected Lead is : "+ leads_name[e.getXIndex()] ,Toast.LENGTH_SHORT);
         t.show();
+        connectedThread=new ConnectedThread(bluetoothSocket);
+        connectedThread.start();
+        connectedThread.write(("Selected Lead is : "+ leads_name[e.getXIndex()]).getBytes());
+       /* try {
+            outputStream = bluetoothSocket.getOutputStream();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            Log.e("Firebase","Socket"+e);
+        }*/
+
+
+
+
+       /* try {
+            outputStream.write(("Selected Lead is : "+ leads_name[e.getXIndex()]).getBytes());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            Log.e("Firebase","outstream"+e);
+        }*/
+
+
         mChart.clear();
         setData();
 
@@ -330,5 +370,22 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
 
     }
 
+
+
+
+
+
+
+
+    /*public void  bluetooth_states(Context context, String status) {
+        String state = status;
+        if (status.equals("ACTION_ACL_DISCONNECTED")) {
+            Intent intent=new Intent(context,Bluetooth_Activity.class);
+            context.startActivity(intent);    // TODO: it is important edit How to add startactivity in method
+
+
+        }
+
+    }*/
 
 }

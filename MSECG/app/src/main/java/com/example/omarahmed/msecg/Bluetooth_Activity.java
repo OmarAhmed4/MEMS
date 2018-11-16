@@ -20,6 +20,9 @@ import java.util.Set;
 
 public class Bluetooth_Activity extends AppCompatActivity {
 
+    //TODO:  Stay Alert to the Value Being Used to Send it to the simulator
+    //TODO:  Connect to Arduino code to try it virtually
+
     private static final int BLUETOOTH_REQUEST =100 ;
     public static ArrayList<String> dataOfList=new ArrayList<>();
     public static ArrayAdapter<String> items;
@@ -36,8 +39,10 @@ public class Bluetooth_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_bluetooth_);
         TextView bluetooth_text= (TextView) findViewById(R.id.textView2);
         Button bluetooth_button= (Button) findViewById(R.id.button2);
-
-
+        if(items!=null)
+        items.clear();
+        if(listViewContents1!=null)
+        listViewContents1.clear();
         //Intent Filter of Bluetooth
 
 
@@ -47,6 +52,7 @@ public class Bluetooth_Activity extends AppCompatActivity {
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(String.valueOf(BluetoothDevice.ERROR));
         registerReceiver(receiver,filter);
 
 
@@ -60,8 +66,12 @@ public class Bluetooth_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(listViewContents1.get(position)!=null) {
+                    /*Intent intent=new Intent(getApplicationContext(),After_Connection_to_Bluetooth.class);
+                    intent.putExtra("Device",position);
+                    startActivity(intent);*/
                     Thread connect = new ConnectThread(listViewContents1.get(position), Bluetooth_Activity.this);
-                    connect.start();
+                    connect.start(); //that was done
+
                 }
                 else
                 {
@@ -103,7 +113,7 @@ public class Bluetooth_Activity extends AppCompatActivity {
         super.onDestroy();
 
         unregisterReceiver(receiver);
-        mBluetoothAdapter.disable();
+        if(mBluetoothAdapter!=null)mBluetoothAdapter.disable();
 
     }
 
@@ -116,6 +126,10 @@ public class Bluetooth_Activity extends AppCompatActivity {
 
             if(resultCode==RESULT_OK)
             {   turnOnReceiver();
+                TextView bluetooth_text= (TextView) findViewById(R.id.textView2);
+                Button bluetooth_button= (Button) findViewById(R.id.button2);
+                bluetooth_button.setText("Search");
+                bluetooth_text.setText("Start Searching");
                 dataOfList.clear();
                 listViewContents1.clear();
                 Set<BluetoothDevice> mPairedbluetoothDvices= mBluetoothAdapter.getBondedDevices();
@@ -147,7 +161,10 @@ public class Bluetooth_Activity extends AppCompatActivity {
     public void search_button(View view)
     {
             //add UI
-
+        if(items!=null)
+            items.clear();
+        if(listViewContents1!=null)
+            listViewContents1.clear();
         bluetoothActing();
 
 
@@ -238,17 +255,22 @@ public class Bluetooth_Activity extends AppCompatActivity {
 
 
 
-    public void bluetooth_states(String status)
-    {
+   /* public void  bluetooth_states(Context context, String status) {
+        String state = status;
+        if (status.equals("ACTION_ACL_CONNECTED")) {
+           *//*Intent intent=new Intent(context,After_Connection_to_Bluetooth.class);
+            context.startActivity(intent);*//*    // TODO: it is important edit How to add startactivity in method
+
+
+        }
+
+    }*/
 
 
 
-    }
 
 
 
 
 
-
-
-}   // end of class
+    }   // end of class
