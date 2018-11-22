@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.Animation;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -64,6 +66,32 @@ public class After_Connection_to_Bluetooth extends AppCompatActivity  implements
         filter.addAction(String.valueOf(BluetoothDevice.ERROR));
         registerReceiver(receiver,filter);
 
+
+
+
+        //TODO: SeekBar
+        final TextView seekBar_data= (TextView) findViewById(R.id.seekbar_value);
+        SeekBar seekBar= (SeekBar) findViewById(R.id.simpleSeekBar);
+        //seekBar.setProgress(40);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekBar_data.setText("BPM  = "+ Integer.toString(progress+40));
+                connectedThread=new ConnectedThread(bluetoothSocket);
+                connectedThread.start();
+                connectedThread.write(("BPM  =  "+ Integer.toString(progress+40)).getBytes());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
 
 
@@ -388,4 +416,14 @@ public class After_Connection_to_Bluetooth extends AppCompatActivity  implements
 
     }*/
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ConnectedThread connectedThread=new ConnectedThread(bluetoothSocket);
+        connectedThread.start();
+        connectedThread.cancel();
+
+
+    }
 }
