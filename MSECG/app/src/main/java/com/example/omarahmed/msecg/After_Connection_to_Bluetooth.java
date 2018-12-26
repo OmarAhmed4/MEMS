@@ -3,11 +3,14 @@ package com.example.omarahmed.msecg;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.animation.Animation;
 import android.widget.SeekBar;
@@ -45,6 +48,10 @@ public class After_Connection_to_Bluetooth extends AppCompatActivity  implements
     private OutputStream outputStream;
 
 
+    //TODO : preference adding
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +86,7 @@ public class After_Connection_to_Bluetooth extends AppCompatActivity  implements
                 seekBar_data.setText("BPM  = "+ Integer.toString(progress+40));
                 connectedThread=new ConnectedThread(bluetoothSocket);
                 connectedThread.start();
-                connectedThread.write(("BPM  =  "+ Integer.toString(progress+40)).getBytes());
+                connectedThread.write((Integer.toString(progress+40)).getBytes());
             }
 
             @Override
@@ -426,4 +433,32 @@ public class After_Connection_to_Bluetooth extends AppCompatActivity  implements
 
 
     }
+
+    //TODO: oncreate option menu
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+       getMenuInflater().inflate(R.menu.calibrator_settings,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id=item.getItemId();
+        if(id == R.id.calibrator_settings)
+        {
+            //TODO :  put the fragment prefrences
+
+            Intent intent=new Intent(this,Setting_Preference_activity.class);
+                startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
 }

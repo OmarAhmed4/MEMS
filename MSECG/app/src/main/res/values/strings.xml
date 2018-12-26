@@ -9,5 +9,15 @@
     <string name="title_activity_piechart__test">Piechart_Test</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_after__connection_to__bluetooth">After_Connection_to_Bluetooth
+
+    <string name="power_switch">power_switch</string>
+    <string name="led_switch">led_switch</string>
+    <string name="buzzer">buzzer</string>
+    <string name="mode">mode</string>
+
+
+
+
     </string>
+
 </resources>

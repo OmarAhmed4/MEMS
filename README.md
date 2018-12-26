@@ -6,6 +6,7 @@ Start simple project to learn
 
 ## video of APp
 #### https://youtu.be/m_y12OHHzcU
+#### https://www.youtube.com/watch?v=1aWDw-ZvB5A&feature=youtu.be
 
 ## Start of the MSECG Application Used to introduce available devices of a company  "Random data now"
 ![screenshot_1542234678](https://user-images.githubusercontent.com/31747623/48524286-77ecbd00-e888-11e8-99e9-5f530824b124.png)

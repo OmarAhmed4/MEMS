@@ -1,9 +1,12 @@
 package com.example.omarahmed.msecg;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.animation.Animation;
 import android.widget.Toast;
@@ -48,6 +51,15 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
         setContentView(R.layout.activity_piechart__test);
        /* Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);*/
+
+        //TODO:Pref
+
+
+
+
+
+
+
 
 
         PieChart pieChart= (PieChart) findViewById(R.id.piechart);
@@ -328,6 +340,26 @@ public class Piechart_Test extends AppCompatActivity implements OnChartValueSele
 
 
     }
+             @Override
+             public boolean onCreateOptionsMenu(Menu menu) {
+                 getMenuInflater().inflate(R.menu.calibrator_settings,menu);
+                 return true;
+             }
+
+             @Override
+             public boolean onOptionsItemSelected(MenuItem item) {
+
+                 int id=item.getItemId();
+                 if(id == R.id.calibrator_settings)
+                 {
+                     //TODO :  put the fragment prefrences
+
+                     Intent intent=new Intent(this,Setting_Preference_activity.class);
+                     startActivity(intent);
+                 }
+
+                 return super.onOptionsItemSelected(item);
+             }
 
 
 }

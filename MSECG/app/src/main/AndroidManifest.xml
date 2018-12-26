@@ -31,9 +31,7 @@
         </activity>
         <activity
             android:name=".Bluetooth_Activity"
-            android:parentActivityName=".Start_Activity"
-
-            />
+            android:parentActivityName=".Start_Activity" />
         <activity
             android:name=".Devices_Details"
             android:parentActivityName=".Start_Activity" />
@@ -57,8 +55,17 @@
         <activity
             android:name=".After_Connection_to_Bluetooth"
             android:label="@string/title_activity_after__connection_to__bluetooth"
+            android:launchMode="singleTop"
+            android:parentActivityName=".Start_Activity" />
 
-            android:parentActivityName=".Start_Activity"></activity>
+        <activity android:name=".Setting_Preference_activity"
+            android:parentActivityName=".After_Connection_to_Bluetooth"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".After_Connection_to_Bluetooth"/>
+
+        </activity>
     </application>
 
 </manifest>
