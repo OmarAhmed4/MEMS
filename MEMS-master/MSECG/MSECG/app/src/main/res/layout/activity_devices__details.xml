@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:fillViewport="true"
+    android:isScrollContainer="true">
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.omarahmed.msecg.Devices_Details"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    >
+
+
+
+
+    <ImageView
+        android:id="@+id/image_details"
+        android:src="@drawable/ic_menu_manage"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintWidth_default="spread"
+
+
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <TextView
+        android:text="name"
+        android:padding="4dp"
+        android:id="@+id/device_name"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:layout_width="304dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_default="spread"
+        tools:layout_editor_absoluteX="0dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintTop_toBottomOf="@+id/image_details" />
+    <TextView
+        android:padding="4dp"
+        android:text="details"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/device_details"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_default="spread"
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/device_name" />
+    <TextView
+        android:padding="4dp"
+        android:text="brand"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/device_brand"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_default="spread"
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/device_contact" />
+    <TextView
+        android:padding="4dp"
+        android:text="price"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/device_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_default="spread"
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/device_details" />
+    <TextView
+        android:padding="4dp"
+        android:text="contact"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/device_contact"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_default="spread"
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginTop="-8dp"
+        app:layout_constraintTop_toBottomOf="@+id/device_price" />
+    <TextView
+        android:padding="4dp"
+        android:text="time"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/device_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_default="spread"
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/device_brand" />
+    <TextView
+        android:padding="4dp"
+        android:text="wranatty"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:id="@+id/device_warranty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_default="spread"
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/device_time" />
+
+
+</android.support.constraint.ConstraintLayout>
+</ScrollView>

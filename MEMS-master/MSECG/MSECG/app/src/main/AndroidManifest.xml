@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.omarahmed.msecg">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/store_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/store_icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".Start_Activity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Bluetooth_Activity"
+            android:parentActivityName=".Start_Activity" />
+        <activity
+            android:name=".Devices_Details"
+            android:parentActivityName=".Start_Activity" />
+
+        <receiver
+            android:name=".ConnectionReceiver"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name=".NetworkConnectionReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".LineChartTest"
+            android:parentActivityName=".Start_Activity" />
+        <activity
+            android:name=".Piechart_Test"
+            android:label="@string/title_activity_piechart__test"
+            android:parentActivityName=".Start_Activity"
+
+            ></activity>
+    </application>
+
+</manifest>

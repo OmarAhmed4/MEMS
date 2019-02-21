@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Store">
+        <menu>
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Line Chart" />
+            <item
+                android:id="@+id/pieChartmenu"
+                android:icon="@drawable/ic_menu_send"
+                android:title="PieChart" />
+        </menu>
+        </item>
+    </group>
+
+    <item android:title="ECG Calibrator">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Calibrate ECG" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send Feedback" />
+        </menu>
+    </item>
+
+</menu>

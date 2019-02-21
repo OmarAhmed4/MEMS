@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MSECG</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="device_details">DeviceDetails</string>
+    <string name="title_activity_piechart__test">Piechart_Test</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_after__connection_to__bluetooth">After_Connection_to_Bluetooth
+    </string>
+</resources>
